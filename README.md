@@ -1,2 +1,2 @@
 # hexo-blog
-http:www.zengxiaowen.me
+http://www.zengxiaowen.me
