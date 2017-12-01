@@ -5,7 +5,7 @@
 # Site
 title: 小小wen的博客
 subtitle: 生活不只有苟且，还有诗和远方。
-description: 就这样吧。
+description: 主人很懒，什么都没有留下。
 author: xiaowen Zeng.
 language: zh-CN
 timezone: Asia/Shanghai
@@ -72,7 +72,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: nlvi
+theme: vexo #nlvi
 
 #search 
 search:
