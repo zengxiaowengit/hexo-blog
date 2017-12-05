@@ -7,5 +7,3 @@ public/
 .deploy*/
 .idea/
 .deploy_git/
-node_modules/
-public/
