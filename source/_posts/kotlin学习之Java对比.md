@@ -2,7 +2,7 @@ title: kotlin学习之Java对比
 date: 2017-09-28 12:00:00
 tag: 
 - kotlin
-- java
+
 ---
 Kotlin 非常具有代表性，具有简明性和独特的表达能力，同时易于“并发编程”。
 不过，Java8有一个巨大的进步，就是Stream API以及lambda表达式的引入，编程的思维有一定的进步，代码量一定程度减少，但是还不够。
