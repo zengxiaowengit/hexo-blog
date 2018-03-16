@@ -1,5 +1,5 @@
 ---
-title: 学习里程碑
+title: 博客里程碑
 date: 2018-12-11 19:48:40
 tags:
 	- Milestone
@@ -26,8 +26,37 @@ tags:
 ### jdk中的算法与数据结构
 	
 -	HashMap、LinkedHashMap、ConcurrentHashMap、HashTable
--	集合类，List，LinkedList、ArrayList
--	队列，ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue
+-	集合类，List，LinkedList、ArrayList、CopyOnWriteArrayList
+-	队列，ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue、DelayQueue
+	Deque, 双端队列,环形队列
+-	链表
+
+### concurrent包
+
+	并发比较难理解，易出错。需要单独拿出来学习理解。
+	CountDownLatch
+	ForkJoinPool
+	CAS操作(CompareAndSet（CompareAndSwap），ABA问题，version可以解决。)
+
+## JVM底层原理
+
+### java为什么能跨平台
+
+	基于栈的数据操作。可跨平台。
+	基于寄存器的数据操作。不可跨平台。优点：寄存器的操作比栈快。如：Google的arm架构和Android手机的架构系统。
+
+### 内存模型
+
+-	新生代
+-	年轻代
+-	永久代
+from区，to区
+
+### 垃圾回收策略
+
+-	标记清除法
+-	复制算法
+-	分代收集
 
 ## 设计模式
 
@@ -83,7 +112,26 @@ tags:
 	
 	索引最大左匹配原则
 	
-### 部署和使用
+### 索引优化
+-	区分度越高的，使用越多的字段越应该放在最左边。如：时间。
+-	不建议对取值范围小的列做索引。
+	原因：二叉树的查找值越多查找区分度越大。最后没有区分度的值会退化为O(n)复杂度的顺序查找。
+	
+	
+
+### 并发访问控制方案
+
+-	乐观锁
+	
+	添加version版本控制
+
+-	悲观锁
+
+	select for update。不建议使用。最优情况会锁住一行，如果没有走索引，最坏情况会锁住整个表，直到事务提交。
+
+	
+
+### 大数据量，高可用方案
 
 -	主从高可用，读写分离
 -	分库分表
@@ -96,14 +144,15 @@ tags:
 	sql路由、改写、聚合操作、join操作等。
 
 
-
 ## 全文检索
 
--	倒排索引
-
--	Lucene
+###	倒排索引
+	正常查找都是基于词，去文档中查找。倒排索引对文档进行分词，记录词对应的文档。
+	查询时先做分词，再去做文档查找和匹配。
 	
--	Elastic Search 
+###	Lucene
+	
+###	Elastic Search 
 
 	Kibana、Logstash
 
@@ -159,7 +208,9 @@ tags:
 	基于redis
 	基于zookeeper
 	
-
+### 分布式系统架构解耦合
+	消息队列 rabbitMQ
+	
 
 ## 机器学习，数据挖掘
 	
@@ -183,8 +234,8 @@ tags:
 - SQL注入
 - XSS
 - CSRF
-- TCP syn报文重放
-
+- TCP 洪流攻击(syn报文重放)
+- TCP 报文不确认ack, 占用连接
 
 
 ## 运维
@@ -192,6 +243,11 @@ tags:
 
 - 日志系统	- ELK
 - 调用链路	- zipkin
-- 集群监控	- 
-- 负载均衡	- 
+- 集群监控	- jmx监控收集到ELK中
+- 负载均衡	- 客户端/服务端
 - docker容器集群部署
+
+
+## 其它
+
+-	正则表达式
