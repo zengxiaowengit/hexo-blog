@@ -23,6 +23,8 @@ tags:
 
 ## 免费搭建权威机构颁发的https证书(推荐)
 
+<!-- more -->	
+
 ### 申请证书
 ```bash
 curl https://get.acme.sh | sh
@@ -62,10 +64,10 @@ acme.sh --issue --dns dns_ali -d zengxiaowen.me -d *.zengxiaowen.me
 ```
 	
 
-## 使用openssl搭建非权威机构颁发的证书的https
+## 使用openssl搭建非权威机构颁发的证书的https(不推荐)
 	此种方式申请的证书会有不安全的标识。因为不是权威机构颁发的证书，是自己签发的。不推荐使用。
 
-### 使用openssl步骤(不推荐)
+### 使用openssl步骤
 ```bash
 sudo mkdir /etc/nginx/ssl
 sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
