@@ -17,6 +17,9 @@ tags:
 
 ## 基础知识
 
+### 文档(Document)
+
+### 索引(type)
 
 ## 环境搭建
 
@@ -59,7 +62,7 @@ GET /organization/public/_search
 
 ```
 
-### 精确值匹配,不分词.对于分词字段分词 
+### 精确值匹配,一般不分词.对于分词字段分词。
 ```json
 GET /organization/public/_search
 {
@@ -125,7 +128,7 @@ GET /organization/public/_search
 ```
 
 
-### 排序
+### 查询加结果排序
 ```json
 GET /organization/public/_search
 {
@@ -144,7 +147,84 @@ GET /organization/public/_search
 }
 ```
 
+### 查询排序加聚合
 
+	aggs即聚合信息。聚合信息的种类非常多，如：max, min, avg, sum, top N, group by 等。
+	基本的聚合信息可以使用stats。
+	基本聚合信息不满足的，可以使用extended_stats，有平方和、标准差、方差等。
+	
+```json
+GET /organization/public/_search
+{
+  "query": {
+    "match": {
+      "type": 1
+    }
+  },
+  "sort": [
+    {
+      "id": {
+        "order": "desc"
+      }
+    }
+  ],
+  "aggs": {
+    "statsCnt": {
+      "stats": {
+        "field": "signStatus"
+      }
+    }
+  }
+}
+```
+```json
+{
+  "took": 12,
+  "timed_out": false,
+  "_shards": {
+    "total": 5,
+    "successful": 5,
+    "failed": 0
+  },
+  "hits": {
+    "total": 340,
+    "max_score": null,
+    "hits": [{
+    	...
+    }]
+  },
+  "aggregations": {
+    "statsCnt": {
+      "count": 340,
+      "min": 1,
+      "max": 6,
+      "avg": 4.2176470588235295,
+      "sum": 1434
+    }
+  }
+}
+```
+	extend_stats输出结果示例:
+
+```json
+"aggregations": {
+    "statsCnt": {
+      "count": 340,
+      "min": 1,
+      "max": 6,
+      "avg": 4.2176470588235295,
+      "sum": 1434,
+      "sum_of_squares": 6758,
+      "variance": 2.0879238754325264,
+      "std_deviation": 1.4449650083765095,
+      "std_deviation_bounds": {
+        "upper": 7.107577075576549,
+        "lower": 1.3277170420705104
+      }
+    }
+  }
+```
+	
 
 ## 配置
 

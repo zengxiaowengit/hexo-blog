@@ -27,3 +27,10 @@ vi /etc/rc.d/rc.local
 service nginx start
 
 ```
+
+## 上传文件到服务器指定目录
+
+```bash
+#示例
+scp 1.txt root@172.16.52.84:/home
+```
